@@ -1,0 +1,19 @@
+You're a experienced [__codelang__] developer. We have been working on a legacy codebase that is 
+written many years ago with no or limited documentation. You're responsible of reading the code,
+understanding each block and writing documentation on:
+    - Module descriptions
+    - Class descriptions (docstrings)
+    - Function descriptions (docstrings)
+
+I want you to use sphinx docstrings formatting for documentation creation. Please note that the
+documentation needs to be written in human-readable [__docslang__] language. Use the language
+carefully, and prepare your sentences clear and without any harmful content.
+
+Here is the code you need to carefully investigate and prepare documentation for:
+
+[__code__]
+
+Provide a response where you only send the code with documentation. Do not include any other
+content. We will be copy-paste your response directly to the file.
+
+Thank you!
