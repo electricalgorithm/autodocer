@@ -11,16 +11,18 @@ if __name__ == "__main__":
 
     # Create an instance of Autodocer.
     autodocer = Autodocer()
-
-    # Use LLAMA2 to generate documentation for the test_file_llama.py file.
+    
+    # Set the model for the Autodocer.
     autodocer.set_model(LLaMa2Model(HOST, PORT))
+    # autodocer.set_model(CodeLLaMaModel(HOST, PORT))
+    
+    # Set the documentation language for the Autodocer.
     autodocer.set_documentation_language(DocsLanguage.EN)
-    autodocer.add_file("test_file_llama.py")
-    autodocer.apply_documentations()
+    
+    # Add files to be documented.
+    autodocer.add_file("examples/input.py")
+    # autodocer.add_file("...")
 
-    # Use CodeLLaMa to generate documentation for the test_file_codellama.py file.
-    autodocer.set_model(CodeLLaMaModel(HOST, PORT))
-    autodocer.set_documentation_language(DocsLanguage.EN)
-    autodocer.add_file("test_file_codellama.py")
+    # Run the magic.
     autodocer.apply_documentations()
     
