@@ -13,9 +13,11 @@ author: @electricalgorithm
 """
 
 from .llama2 import LLaMa2Model
+from .codellama import CodeLLaMaModel
 from .base import ModelResponse, ModelBase
 
 __all__ = [
+    "CodeLLaMaModel",
     "LLaMa2Model",
     "ModelResponse",
     "ModelBase"
