@@ -1,15 +1,26 @@
 """This is the main script to use Autodocer."""
 
 from core.autodocer import Autodocer
-from core.models import LLaMa2Model
+from core.models import LLaMa2Model, CodeLLaMaModel
 from core.datatypes import DocsLanguage
 
 
 if __name__ == "__main__":
-    autodocer = Autodocer()
-    autodocer.set_model(LLaMa2Model("localhost", 11434))
-    autodocer.set_documentation_language(DocsLanguage.EN)
+    HOST: str = "localhost"
+    PORT: int = 11434
 
-    autodocer.add_file("test_file.py")
+    # Create an instance of Autodocer.
+    autodocer = Autodocer()
+
+    # Use LLAMA2 to generate documentation for the test_file_llama.py file.
+    autodocer.set_model(LLaMa2Model(HOST, PORT))
+    autodocer.set_documentation_language(DocsLanguage.EN)
+    autodocer.add_file("test_file_llama.py")
+    autodocer.apply_documentations()
+
+    # Use CodeLLaMa to generate documentation for the test_file_codellama.py file.
+    autodocer.set_model(CodeLLaMaModel(HOST, PORT))
+    autodocer.set_documentation_language(DocsLanguage.EN)
+    autodocer.add_file("test_file_codellama.py")
     autodocer.apply_documentations()
     
