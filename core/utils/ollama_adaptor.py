@@ -8,6 +8,7 @@ import json
 import requests
 from typing import Any, Optional
 from dataclasses import dataclass
+from core.utils import get_logger
 
 @dataclass
 class OllamaRequest:
@@ -77,6 +78,7 @@ class OllamaAdaptor:
         self._host = server_host
         self._port = server_port
         self._api_endpoint = server_endpoint
+        self._logger = get_logger(__name__, "DEBUG")
 
     def send_request(self, request: OllamaRequest) -> OllamaResponse:
         """It sends a request to the ollama server and returns the response.
@@ -92,8 +94,11 @@ class OllamaAdaptor:
 
         # Send the request.
         json_request = self._request_to_json(request)
+        self._logger.debug(f"The request JSON is created: {json_request}")
         response = requests.post(url, data=json_request)
-        
+        self._logger.debug(f"The response status code is: {response.status_code}")
+        self._logger.debug(f"The JSON response is: {response.text}")
+
         # Return the response.
         return self._json_to_response(response.text)
     
