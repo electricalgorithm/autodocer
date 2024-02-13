@@ -15,7 +15,7 @@ class Logger:
     This class is used to create a logger for the application. The logger
     logs information, warnings, and errors to the console and to a file.
     """
-    DEFAULT_LOG_FILE = './.logs/autodocer'
+    DEFAULT_LOG_FILE = './.logs/autodocer.log'
 
     def __init__(self, name: str, level: int | str) -> None:
         """The constructor for the Logger class.
@@ -39,10 +39,13 @@ class Logger:
         file_handler.setLevel(level)
 
         # Create formatters and add it to handlers
-        stream_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
-        file_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        stream_handler.setFormatter(stream_format)
-        file_handler.setFormatter(file_format)
+        # Set the formatting of the logger.
+        formatter = logging.Formatter(
+            '%(asctime)s - %(levelname)s - %(message)s'
+        )
+
+        stream_handler.setFormatter(formatter)
+        file_handler.setFormatter(formatter)
 
         # Add handlers to the logger
         self.logger.addHandler(stream_handler)
