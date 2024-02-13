@@ -142,6 +142,9 @@ class ModelBase(metaclass=ABCMeta):
         self._logger.debug(f"Generated response for the model "
                            f"{self.model_name}:\n\t{asdict(result)}")
 
+        # Trim the response.
+        result.response = result.response.replace("```", "")
+
         # Return the response from the model.
         return ModelResponse(model_name=self.model_name,
                             code_language=code_language,
